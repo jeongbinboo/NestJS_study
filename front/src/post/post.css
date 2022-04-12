@@ -1,0 +1,54 @@
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.titleContainer {
+  flex: 2;
+  display: flex;
+  background-color: cornflowerblue;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.descContainer {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titlePost {
+  height: 30%;
+  width: 50%;
+  font-size: 20px;
+}
+
+.descPost {
+  height: 50%;
+  width: 50%;
+  font-size: 20px;
+}
+
+.btnBox {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  text-decoration: none;
+  border: black 1px solid;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: cornflowerblue;
+  color: white;
+}

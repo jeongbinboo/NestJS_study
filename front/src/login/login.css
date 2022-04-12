@@ -1,0 +1,77 @@
+.loginContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 500px;
+  height: 300px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: blanchedalmond;
+  width: 80%;
+  margin-top: 20px;
+}
+.nestjsBox {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 30px;
+}
+.signUpBox {
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.Button {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: white;
+  color: cornflowerblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Button:hover {
+  background-color: cornflowerblue;
+  color: white;
+  cursor: pointer;
+}
+.buttonBox {
+  display: flex;
+  margin-top: 10px;
+}
+.input {
+  height: 30px;
+}
+
+.ftBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 10px;
+  width: 400px;
+  height: 30px;
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.ftBtn:hover {
+  background-color: white;
+  color: cornflowerblue;
+  cursor: pointer;
+}

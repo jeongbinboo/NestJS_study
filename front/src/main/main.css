@@ -1,0 +1,94 @@
+.mainContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: cornflowerblue;
+}
+
+.leftHeader {
+  display: flex;
+  flex: 5;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightHeader {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.postBtn {
+  text-decoration: none;
+  color: white;
+  border: white 1px solid;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.postBtn:hover {
+  background-color: white;
+  color: cornflowerblue;
+}
+
+.selectBox {
+  width: 100px;
+  height: 35px;
+}
+
+.searchBox {
+  width: 300px;
+  height: 30px;
+}
+
+.searchBtn {
+  height: 35px;
+  width: 60px;
+}
+
+.contents {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+}
+
+.board {
+  flex: 1;
+  display: flex;
+}
+
+.board:hover {
+  background-color: cornflowerblue;
+  cursor: pointer;
+}
+.boardW {
+  background-color: white;
+}
+
+.boardG {
+  background-color: gainsboro;
+}
+
+.titleBox {
+  flex: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.userBox {
+  flex: 1;
+  border-left: black 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
