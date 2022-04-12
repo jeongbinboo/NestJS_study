@@ -27,13 +27,18 @@ export class BoardsController {
     return this.boardService.postBoard(req.user, board);
   }
 
-  @Post('/findById') //Get specific user's boards
-  findById(@Body() userId) {
-    return this.boardService.findById(userId);
+  @Get('/findByUserId/:userId') //Get specific user's boards
+  findByUserId(@Param('userId') userId: string) {
+    return this.boardService.findByUserId(userId);
   }
 
-  @Post('/findByTitle')
-  findByTitle(@Body() title) {
+  @Get('/findByTitle/:title')
+  findByTitle(@Param('title') title: string) {
     return this.boardService.findByTitle(title);
+  }
+
+  @Get('/findByBoardId/:id')
+  findByBoardId(@Param('id') id: string) {
+    return this.boardService.findByBoardId(id);
   }
 }

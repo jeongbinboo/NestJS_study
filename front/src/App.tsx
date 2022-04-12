@@ -7,6 +7,7 @@ import { SignUp } from './signUp/signUp';
 import Loading from './loading/loading';
 import { Main } from './main/main';
 import { Post } from './post/post';
+import Board from './main/board';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/loading" element={<Loading />} />
           <Route path="/main" element={<Main />} />
+          <Route path="/main/board/*" element={<Board />} />
           <Route path="/post" element={<Post />} />
         </Routes>
       </BrowserRouter>

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import webClient from '../webclient';
-import { BoardInterface } from '../interface/board_interface';
 import './main.css';
 import { BoardList } from './boardList';
 import { Link } from 'react-router-dom';
+import BoardInterface from '../interface/board_interface';
 
 export const Main = () => {
   const arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -16,16 +16,12 @@ export const Main = () => {
     const response = await webClient.get('/boards');
     setBoards(response.data);
   };
-  const findById = async (userId: string) => {
-    const response = await webClient.post('/boards/findById', {
-      userId: userId,
-    });
+  const findByUserId = async (userId: string) => {
+    const response = await webClient.get(`/boards/findByUserId/${userId}`);
     setBoards(response.data);
   };
   const findByTitle = async (title: string) => {
-    const response = await webClient.post('/boards/findByTitle', {
-      title: title,
-    });
+    const response = await webClient.get(`/boards/findByTitle/${title}`);
     setBoards(response.data);
   };
   useEffect(() => {
@@ -51,7 +47,7 @@ export const Main = () => {
             onChange={async (e) => {
               if (e.target.value === '') getAllBoards();
               else {
-                if (option === 'user') findById(e.target.value);
+                if (option === 'user') findByUserId(e.target.value);
                 else if (option === 'title') findByTitle(e.target.value);
               }
             }}
@@ -63,7 +59,7 @@ export const Main = () => {
           </Link>
         </div>
       </div>
-      <div className="contents">
+      <div className="body">
         {arr.map((arr, index) => {
           if (index % 2)
             return (

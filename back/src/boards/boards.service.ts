@@ -26,8 +26,8 @@ export class BoardsService {
     });
   }
 
-  async findById(userId) {
-    const user = await this.userRepository.find({ userId: userId.userId });
+  async findByUserId(userId) {
+    const user = await this.userRepository.find({ userId: userId });
     const userBoards: BoardEntity[] = await this.boardRepository.find({
       user: user[0],
     });
@@ -35,7 +35,12 @@ export class BoardsService {
   }
 
   async findByTitle(title) {
-    const boards = await this.boardRepository.find({ title: title.title });
+    const boards = await this.boardRepository.find({ title: title });
     return boards;
+  }
+
+  async findByBoardId(boardId) {
+    const board = await this.boardRepository.find({ id: boardId });
+    return board;
   }
 }

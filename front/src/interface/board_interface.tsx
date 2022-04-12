@@ -1,4 +1,4 @@
-export interface BoardInterface {
+interface BoardInterface {
   id: number;
   title: string;
   description: string;
@@ -8,3 +8,4 @@ export interface BoardInterface {
     userPassword: string;
   };
 }
+export default BoardInterface;

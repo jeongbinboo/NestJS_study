@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router';
 import './main.css';
 
 export const BoardList = (props: any) => {
+  const navigate = useNavigate();
   if (props.content == undefined)
     return (
       <div className={props.class}>
@@ -12,8 +14,8 @@ export const BoardList = (props: any) => {
     return (
       <div
         className={props.class}
-        onClick={(target) => {
-          console.log(target.target);
+        onClick={() => {
+          navigate(`./board/${props.content.id}`);
         }}
       >
         <div className="titleBox">{props.content.title}</div>
