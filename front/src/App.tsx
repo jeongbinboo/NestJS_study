@@ -8,6 +8,7 @@ import Loading from './loading/loading';
 import { Main } from './main/main';
 import { Post } from './post/post';
 import Board from './main/board';
+import { Modify } from './modify/modify';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/main/board/*" element={<Board />} />
           <Route path="/post" element={<Post />} />
+          <Route path="/modify/*" element={<Modify />} />
         </Routes>
       </BrowserRouter>
     </div>

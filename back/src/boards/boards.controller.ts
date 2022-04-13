@@ -41,4 +41,15 @@ export class BoardsController {
   findByBoardId(@Param('id') id: string) {
     return this.boardService.findByBoardId(id);
   }
+
+  @Delete('/deleteBoard/:id')
+  deleteBoard(@Param('id') id: string) {
+    return this.boardService.deleteBoard(id);
+  }
+
+  @Post('/modifyBoard/:id')
+  modifyBoard(@Param('id') id: string, @Body(ValidationPipe) board: BoardDto) {
+    console.log(board);
+    return this.boardService.modifyBoard(id, board);
+  }
 }

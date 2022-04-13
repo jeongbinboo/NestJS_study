@@ -68,6 +68,7 @@
 .board:hover {
   background-color: cornflowerblue;
   cursor: pointer;
+  border: black 1px solid;
 }
 .boardW {
   background-color: white;

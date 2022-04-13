@@ -12,6 +12,11 @@ const Board = () => {
     setBoard(result.data[0]);
     if (result.data.length === 0) navigate('/main');
   };
+  const deleteBoard = async (id: number | undefined) => {
+    await webClient.delete(`/boards/deleteBoard/${id}`);
+    alert('게시물이 삭제되었습니다!');
+    navigate('/main');
+  };
   useEffect(() => {
     const url = new URL(window.location.href);
     const results: string[] = url.pathname.split('/');
@@ -47,8 +52,22 @@ const Board = () => {
         </div>
       </div>
       <div className="boardBtnBox">
-        <div className="boardBtn">수정하기</div>
-        <div className="boardBtn">삭제하기</div>
+        <div
+          className="boardBtn"
+          onClick={() => {
+            navigate(`/modify/${board?.id}`);
+          }}
+        >
+          수정하기
+        </div>
+        <div
+          className="boardBtn"
+          onClick={() => {
+            deleteBoard(board?.id);
+          }}
+        >
+          삭제하기
+        </div>
       </div>
     </div>
   );

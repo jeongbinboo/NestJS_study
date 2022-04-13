@@ -2,6 +2,7 @@ import { Injectable, Req } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/auth/entity/user.entity';
 import { Repository } from 'typeorm';
+import { BoardDto } from './dto/boardDto';
 import { BoardEntity } from './entity/boards.entity';
 
 @Injectable()
@@ -42,5 +43,16 @@ export class BoardsService {
   async findByBoardId(boardId) {
     const board = await this.boardRepository.find({ id: boardId });
     return board;
+  }
+
+  async deleteBoard(boardId) {
+    await this.boardRepository.delete({ id: boardId });
+  }
+
+  async modifyBoard(boardId, boardContents) {
+    const board = await this.boardRepository.findOne({ id: boardId });
+    board.title = boardContents.title;
+    board.description = boardContents.description;
+    await this.boardRepository.save(board);
   }
 }
