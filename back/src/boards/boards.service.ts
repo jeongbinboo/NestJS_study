@@ -1,8 +1,7 @@
-import { Injectable, Req } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/auth/entity/user.entity';
 import { Repository } from 'typeorm';
-import { BoardDto } from './dto/boardDto';
 import { BoardEntity } from './entity/boards.entity';
 
 @Injectable()
@@ -45,10 +44,24 @@ export class BoardsService {
     return board;
   }
 
-  async deleteBoard(boardId) {
-    await this.boardRepository.delete({ id: boardId });
+  async deleteBoard(boardId, user): Promise<boolean> {
+    if (await this.validateUser(boardId, user)) {
+      await this.boardRepository.delete({ id: boardId });
+      return true;
+    } else {
+      return false;
+    }
   }
-
+  async validateUser(boardId, user): Promise<boolean> {
+    const board: BoardEntity = await this.boardRepository.findOne({
+      id: boardId,
+    });
+    if (board.user.id === user.id) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   async modifyBoard(boardId, boardContents) {
     const board = await this.boardRepository.findOne({ id: boardId });
     board.title = boardContents.title;

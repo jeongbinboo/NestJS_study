@@ -43,13 +43,16 @@ export class BoardsController {
   }
 
   @Delete('/deleteBoard/:id')
-  deleteBoard(@Param('id') id: string) {
-    return this.boardService.deleteBoard(id);
+  deleteBoard(@Param('id') id: string, @Req() req): Promise<boolean> {
+    return this.boardService.deleteBoard(id, req.user);
+  }
+  @Get('/modifyBoard/validation/:id')
+  validateUser(@Param('id') id: string, @Req() req): Promise<boolean> {
+    return this.boardService.validateUser(id, req.user);
   }
 
   @Post('/modifyBoard/:id')
   modifyBoard(@Param('id') id: string, @Body(ValidationPipe) board: BoardDto) {
-    console.log(board);
     return this.boardService.modifyBoard(id, board);
   }
 }

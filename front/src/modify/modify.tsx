@@ -17,7 +17,8 @@ export const Modify = () => {
       title: title,
       description: desc,
     });
-    navigate('/main');
+    alert('수정완료!');
+    navigate(`/main/board/${board?.id}`);
   };
   const getBoard = async (id: string) => {
     const result = await webClient.get(`/boards/findByBoardId/${id}`);
@@ -26,6 +27,14 @@ export const Modify = () => {
     setTitle(result.data[0].title);
     setDesc(result.data[0].description);
   };
+  const checkUser = async (id: string) => {
+    console.log(id);
+    const valid = await webClient.get(`/boards/modifyBoard/validation/${id}`);
+    if (!valid.data) {
+      alert('잘못된 접근입니다!');
+      navigate('/main');
+    }
+  };
   useEffect(() => {
     const url = new URL(window.location.href);
     const results: string[] = url.pathname.split('/');
@@ -33,6 +42,7 @@ export const Modify = () => {
       (result) => result == 'modify'
     );
     const boardId: string = results[boardIndex + 1];
+    checkUser(boardId);
     getBoard(boardId);
   }, []);
   return (
@@ -45,7 +55,7 @@ export const Modify = () => {
           onChange={(event) => {
             setTitle(event.target.value);
           }}
-          value={board?.title || ''}
+          value={title}
         ></input>
       </div>
       <div className="descContainer">
@@ -56,7 +66,7 @@ export const Modify = () => {
           onChange={(event) => {
             setDesc(event.target.value);
           }}
-          value={board?.description || ''}
+          value={desc}
         ></input>
       </div>
       <div className="btnBox">

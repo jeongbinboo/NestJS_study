@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { isConstructorDeclaration } from 'typescript';
 import BoardInterface from '../interface/board_interface';
 import webClient from '../webclient';
 
@@ -13,9 +12,14 @@ const Board = () => {
     if (result.data.length === 0) navigate('/main');
   };
   const deleteBoard = async (id: number | undefined) => {
-    await webClient.delete(`/boards/deleteBoard/${id}`);
-    alert('게시물이 삭제되었습니다!');
-    navigate('/main');
+    const validation = await webClient.delete(`/boards/deleteBoard/${id}`);
+    console.log(validation.data);
+    if (!validation.data) {
+      alert('잘못된 접근입니다!');
+    } else {
+      alert('게시물이 삭제되었습니다!');
+      navigate('/main');
+    }
   };
   useEffect(() => {
     const url = new URL(window.location.href);
