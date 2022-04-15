@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/auth/entity/user.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { BoardEntity } from './entity/boards.entity';
 
 @Injectable()
@@ -27,15 +27,25 @@ export class BoardsService {
   }
 
   async findByUserId(userId) {
-    const user = await this.userRepository.find({ userId: userId });
-    const userBoards: BoardEntity[] = await this.boardRepository.find({
-      user: user[0],
+    let results: BoardEntity[] = [];
+    let i = 0;
+
+    const users = await this.userRepository.find({
+      userId: Like(`${userId}%`),
     });
-    return userBoards;
+    for (i = 0; i < users.length; i++) {
+      const userBoards: BoardEntity[] = await this.boardRepository.find({
+        user: users[i],
+      });
+      results = [...results, ...userBoards];
+    }
+    return results;
   }
 
   async findByTitle(title) {
-    const boards = await this.boardRepository.find({ title: title });
+    const boards = await this.boardRepository.find({
+      title: Like(`${title}%`),
+    });
     return boards;
   }
 
